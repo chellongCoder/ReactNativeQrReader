@@ -106,4 +106,4 @@ const decodeImage = async () => {
 
 # ✨ 앱 스크린샷
 
-<img src="./app_screen.png" style="width: 240px;" />
+<img src="./app_screen.png" width="250" />
