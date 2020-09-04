@@ -14,6 +14,16 @@
 <br>
 <br>
 
+# 🏷 버전 정보
+
+- node: v12.13.1
+- yarn: 1.22.4
+- react-native: 0.61.5
+
+<br>
+<br>
+<br>
+
 
 # 🏷 프로세스
 
@@ -29,11 +39,14 @@
 
 ```bash
 yarn add react-native-image-picker react-native-qr-decode-image-camera react-native-camera
+
+npx pod-install
 ```
 
 - `react-native-image-picker`: 디바이스 갤러리(사진첩)에서 이미지를 가져오는 모듈
 - `react-native-qr-decode-image-camera`: 이미지내 QR을 분석해 내용물을 가져오는 모듈
 - `react-native-camera`: 위 `react-native-qr-decode-image-camera` 모듈의 의존성 모듈
+- pod install 하여 종속성 모듈을 설치해준다.
 
 <br>
 <br>
