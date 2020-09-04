@@ -12,7 +12,9 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-native-image-picker": "^2.3.3"
+    "react-native-camera": "^3.38.0",
+    "react-native-image-picker": "^2.3.3",
+    "react-native-qr-decode-image-camera": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

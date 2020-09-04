@@ -62,6 +62,8 @@
 		AA23B76EC38A009603B3B369 /* Pods-ReactNativeQrReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeQrReaderTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeQrReaderTests/Pods-ReactNativeQrReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1745BEC2A9981A498EB2466 /* Pods-ReactNativeQrReader-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeQrReader-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeQrReader-tvOS/Pods-ReactNativeQrReader-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B8C030281AE0884E302AE1C4 /* libPods-ReactNativeQrReader-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeQrReader-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCD2AF32250212BC005BD37D /* libRCTQRCodeLocalImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRCTQRCodeLocalImage.a; path = "../../../../Library/Developer/Xcode/DerivedData/ReactNativeQrReader-fcdtcvfibshjkhcttklibngkltjg/Build/Products/Debug-iphoneos/libRCTQRCodeLocalImage.a"; sourceTree = "<group>"; };
+		BCD2AF3425021321005BD37D /* libRCTQRCodeLocalImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRCTQRCodeLocalImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA22B20391B96240B6F1A3D7 /* libPods-ReactNativeQrReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeQrReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD5B5E385B1AABEBA6EE2A6F /* Pods-ReactNativeQrReader-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeQrReader-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeQrReader-tvOS/Pods-ReactNativeQrReader-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		E50B74265E588694A0588604 /* libPods-ReactNativeQrReaderTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeQrReaderTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				BCD2AF3425021321005BD37D /* libRCTQRCodeLocalImage.a */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				CA22B20391B96240B6F1A3D7 /* libPods-ReactNativeQrReader.a */,
 				B8C030281AE0884E302AE1C4 /* libPods-ReactNativeQrReader-tvOS.a */,
@@ -159,6 +162,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BCD2AF32250212BC005BD37D /* libRCTQRCodeLocalImage.a */,
 				13B07FAE1A68108700A75B9A /* ReactNativeQrReader */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeQrReaderTests */,
@@ -374,7 +378,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		28BA3815BE06F6BE2EE538A2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

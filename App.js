@@ -6,65 +6,100 @@
  * @flow
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,
   Text,
   StatusBar,
+  TouchableOpacity,
+  Dimensions,
+  View,
+  Image,
+  Alert,
 } from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import ImagePicker from 'react-native-image-picker';
+import {QRreader} from 'react-native-qr-decode-image-camera';
 
 const App: () => React$Node = () => {
+  const [image, setImage] = useState(null);
+  const [result, setResult] = useState(null);
+
+  const handleOnPress = () => {
+    try {
+      ImagePicker.launchImageLibrary(
+        {
+          storageOptions: {
+            path: 'images',
+          },
+          title: '사진을 선택하세요',
+        },
+        response => {
+          if (response.didCancel) {
+            console.log('취소함');
+          } else if (response.error) {
+            console.log('에러 : ', response.error);
+          } else {
+            const source = {uri: response.uri};
+
+            setImage(source);
+          }
+        },
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const decodeImage = async () => {
+    try {
+      QRreader(image.uri)
+        .then(data => {
+          setResult(data);
+        })
+        .catch(e => {
+          console.log({e});
+          setResult(null);
+
+          return Alert.alert('알림', '스캔을 실패하였습니다.');
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+      <SafeAreaView style={[styles.fill, styles.bgWhite]}>
+        <ScrollView contentContainerStyle={styles.fill}>
+          <View style={[styles.fill, styles.spaceAround, styles.row]}>
+            <TouchableOpacity style={styles.button} onPress={handleOnPress}>
+              <Text style={styles.text}>{'사진첩 >'}</Text>
+            </TouchableOpacity>
+            {image && (
+              <TouchableOpacity style={styles.button} onPress={decodeImage}>
+                <Text style={styles.text}>스캔</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+          <View style={[styles.fill, styles.center]}>
+            {image && (
+              <>
+                <Image
+                  source={{uri: image.uri}}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                  resizeMode="contain"
+                />
+              </>
+            )}
+          </View>
+          <View style={[styles.fill, styles.center]}>
+            {image && <Text style={styles.text}>{result}</Text>}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -73,41 +108,44 @@ const App: () => React$Node = () => {
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  row: {
+    flexDirection: 'row',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  spaceAround: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
-  body: {
-    backgroundColor: Colors.white,
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  fill: {
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  bgWhite: {
+    backgroundColor: 'white',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  button: {
+    borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 10,
+    width: Dimensions.get('screen').width / 3,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  highlight: {
-    fontWeight: '700',
+  text: {
+    color: 'blue',
+    fontSize: 20,
   },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  resultBox: {
+    borderWidth: 1,
+    borderColor: 'blue',
+    borderRadius: 10,
+    width: Dimensions.get('screen').width / 1.2,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: 10,
   },
 });
 
